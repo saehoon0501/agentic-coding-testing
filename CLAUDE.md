@@ -1,99 +1,100 @@
-# CLAUDE.md
+# AI Collaboration Guidelines for Project Foundation API
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Project Overview
+This is a comprehensive backend API foundation project implementing CRUD operations with modern software architecture principles. The project follows a layered architecture pattern with clear separation of concerns.
 
-# Agentic Coding Tools Testing Repository
+## AI Agent Collaboration Rules
 
-This repository tests and compares various agentic coding tools and their rule/instruction formats. It contains multiple sub-projects for testing different AI coding assistants.
+### 1. Code Quality Standards
+- **SOLID Principles**: All code must adhere to SOLID design principles
+- **DRY Principle**: Avoid code duplication; create reusable components
+- **Clean Code**: Use meaningful variable names, clear function signatures, and proper documentation
+- **Error Handling**: All functions must have proper error handling with meaningful error messages
 
-## Git Worktree Setup for Parallel Tasks
+### 2. Architecture Guidelines
+- **Layered Architecture**: Maintain clear separation between Controllers, Services, Repositories, and Models
+- **Repository Pattern**: All database operations must go through repository classes
+- **Service Layer**: Business logic must be encapsulated in service classes
+- **Middleware**: Cross-cutting concerns (auth, logging, validation) must use middleware
 
-This repository is configured for parallel development using git worktrees. Each task has its own worktree directory:
+### 3. Development Workflow
+- **Feature Branches**: Create feature branches for new functionality
+- **Testing**: All new features require unit and integration tests
+- **Documentation**: Update API documentation for any endpoint changes
+- **Migration**: Database changes must include proper migration files
 
-- `/Users/clover/claudia-task-1` (branch: `claudia/task-1-pause-reset`) - Task 1: Add Pause and Reset controls
-- `/Users/clover/claudia-task-2` (branch: `claudia/task-2-sound-alert`) - Task 2: Play sound and show alert when time is up
-- `/Users/clover/claudia-task-3` (branch: `claudia/task-3-localstorage`) - Task 3: Store timeboxes in localStorage with history
-- `/Users/clover/claudia-task-4` (branch: `claudia/task-4-countdown-animation`) - Task 4: Animate timer countdown circle
-- `/Users/clover/claudia-task-5` (branch: `claudia/task-5-dark-mode`) - Task 5: Add dark mode support
+### 4. API Design Standards
+- **RESTful**: Follow REST conventions for endpoint design
+- **Consistent Response Format**: All responses must follow the established JSON format
+- **Status Codes**: Use appropriate HTTP status codes
+- **Pagination**: Implement pagination for list endpoints
+- **Validation**: Validate all input data using Joi schemas
 
-**Primary working directory**: `claudia/` folder within each worktree
+### 5. Security Requirements
+- **Authentication**: Protected endpoints must use JWT authentication
+- **Input Validation**: Sanitize and validate all user inputs
+- **Error Messages**: Avoid exposing sensitive information in error messages
+- **CORS**: Configure CORS appropriately for the environment
 
-To work on a specific task:
-```bash
-cd /Users/clover/claudia-task-[1-5]/claudia
-npm install
-npm run dev
+### 6. Performance Guidelines
+- **Database Queries**: Optimize database queries and use indexes appropriately
+- **Caching**: Implement caching where beneficial
+- **Pagination**: Always paginate large result sets
+- **Bulk Operations**: Provide bulk endpoints for operations on multiple records
+
+### 7. Testing Requirements
+- **Unit Tests**: Test individual functions and methods
+- **Integration Tests**: Test API endpoints end-to-end
+- **Coverage**: Maintain minimum 80% test coverage
+- **Mocking**: Mock external dependencies in unit tests
+
+### 8. Documentation Standards
+- **API Docs**: Use Swagger/OpenAPI for API documentation
+- **Code Comments**: Document complex business logic
+- **README**: Keep README updated with setup and usage instructions
+- **Changelog**: Document significant changes
+
+### 9. Environment Management
+- **Environment Variables**: Use environment variables for configuration
+- **Secrets**: Never commit secrets to version control
+- **Multiple Environments**: Support dev, test, and production environments
+
+### 10. Monitoring and Logging
+- **Structured Logging**: Use structured logging with correlation IDs
+- **Health Checks**: Implement comprehensive health check endpoints
+- **Error Tracking**: Log errors with sufficient context for debugging
+- **Performance Monitoring**: Track response times and database query performance
+
+## File Structure Guidelines
+```
+src/
+├── controllers/     # HTTP request handlers
+├── services/        # Business logic layer
+├── repositories/    # Data access layer
+├── models/          # Database models
+├── middleware/      # Cross-cutting concerns
+├── routes/          # Route definitions
+├── utils/           # Utility functions
+└── config/          # Configuration files
 ```
 
-## Repository Structure
+## Commit Message Format
+- feat: New feature
+- fix: Bug fix
+- docs: Documentation changes
+- style: Code style changes
+- refactor: Code refactoring
+- test: Test additions or modifications
+- chore: Maintenance tasks
 
-```
-agentic-coding/
-├── claudia/           # Primary development environment (Material-UI + Vite)
-├── codex/             # Codex testing environment (not used for current tasks)
-├── cursor/            # Cursor testing environment (not used for current tasks)
-└── start_template/    # Base template (not used for current tasks)
-```
+## Review Checklist
+Before merging any code, ensure:
+- [ ] All tests pass
+- [ ] Code follows established patterns
+- [ ] Documentation is updated
+- [ ] Error handling is implemented
+- [ ] Security considerations are addressed
+- [ ] Performance impact is considered
 
-## Development Commands (Within claudia/)
-
-- `npm run dev` - Start development server (Vite)
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
-
-## Architecture Patterns
-
-The claudia project uses:
-- **React 19.1.0** with functional components and modern hooks
-- **Vite** as build tool and dev server
-- **Material-UI** (@mui/material, @mui/icons-material) for UI components
-- **ESLint** for code quality
-- **Inline styles** used throughout (not CSS modules or styled-components)
-- **No external state management** - uses React state only
-
-## Key Files Structure (claudia/)
-
-- `src/main.jsx` - React entry point
-- `src/app.jsx` - Root component
-- `src/timeboxTimer.jsx` - Core timer component for testing
-- `package.json` - Dependencies and scripts
-- `vite.config.js` - Vite configuration
-- `eslint.config.js` - ESLint rules
-
-## Test Tasks
-
-1. **Task 1**: Add Pause and Reset controls to TimeboxTimer
-2. **Task 2**: Play sound and show alert when time is up
-3. **Task 3**: Store timeboxes in localStorage with history display
-4. **Task 4**: Animate timer countdown circle with SVG/canvas
-5. **Task 5**: Add dark mode support with toggle
-
-## Styling Guidelines
-
-- **Primary approach**: Inline styles (existing pattern)
-- **Material-UI components**: Use for UI elements when possible
-- **Icons**: Must use Material-UI icons (@mui/icons-material)
-- **Responsive design**: Ensure components work on mobile and desktop
-
-## React Development Standards
-
-- Use functional components with hooks
-- Export default at the bottom of files
-- Use descriptive component names in PascalCase
-- Keep state as close to where it's used as possible
-- Use controlled components for form inputs
-- Include dependency arrays in useEffect
-- Use arrow functions for event handlers
-
-## Working with Worktrees
-
-To check current worktrees:
-```bash
-git worktree list
-```
-
-To remove a worktree when done:
-```bash
-git worktree remove /Users/clover/claudia-task-[1-5]
-```
+## Contact and Support
+For questions about these guidelines or the project architecture, consult the project documentation or reach out to the development team.

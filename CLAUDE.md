@@ -1,99 +1,84 @@
-# CLAUDE.md
+# AI Collaboration Guidelines for Full-Stack CRUD Foundation
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Project Overview
+This project implements a comprehensive full-stack CRUD application following modern development practices and architectural patterns. It serves as a foundation for building scalable web applications with proper separation of concerns.
 
-# Agentic Coding Tools Testing Repository
+## Architecture Principles
 
-This repository tests and compares various agentic coding tools and their rule/instruction formats. It contains multiple sub-projects for testing different AI coding assistants.
+### Backend Architecture
+- **Layered Architecture**: Controllers → Services → Repositories → Models
+- **Repository Pattern**: Abstraction layer for data access
+- **Dependency Injection**: Services are injected into controllers
+- **Error Handling**: Centralized error handling with correlation IDs
+- **Logging**: Structured logging with Winston
+- **Validation**: Input validation using Joi schemas
 
-## Git Worktree Setup for Parallel Tasks
+### Frontend Architecture
+- **Component-Based**: React components with clear separation of concerns
+- **Service Layer**: API integration abstracted into service classes
+- **Material-UI**: Consistent UI components and theming
+- **Routing**: React Router for navigation
+- **State Management**: Local state with hooks (ready for Redux if needed)
 
-This repository is configured for parallel development using git worktrees. Each task has its own worktree directory:
+## Development Guidelines
 
-- `/Users/clover/claudia-task-1` (branch: `claudia/task-1-pause-reset`) - Task 1: Add Pause and Reset controls
-- `/Users/clover/claudia-task-2` (branch: `claudia/task-2-sound-alert`) - Task 2: Play sound and show alert when time is up
-- `/Users/clover/claudia-task-3` (branch: `claudia/task-3-localstorage`) - Task 3: Store timeboxes in localStorage with history
-- `/Users/clover/claudia-task-4` (branch: `claudia/task-4-countdown-animation`) - Task 4: Animate timer countdown circle
-- `/Users/clover/claudia-task-5` (branch: `claudia/task-5-dark-mode`) - Task 5: Add dark mode support
+### Code Quality Standards
+1. **TypeScript Ready**: Project structure supports TypeScript migration
+2. **ESLint Configuration**: Consistent code formatting and linting
+3. **Test Coverage**: Minimum 80% test coverage required
+4. **Documentation**: All public methods must be documented
+5. **Error Handling**: Proper error handling at all layers
 
-**Primary working directory**: `claudia/` folder within each worktree
+### API Design Principles
+1. **RESTful Design**: Follow REST conventions for all endpoints
+2. **Consistent Response Format**: Standardized JSON responses
+3. **Pagination**: All list endpoints support pagination
+4. **Filtering**: Support for filtering and searching
+5. **Versioning**: API versioning strategy in place
 
-To work on a specific task:
-```bash
-cd /Users/clover/claudia-task-[1-5]/claudia
-npm install
-npm run dev
-```
+## AI Agent Collaboration Rules
 
-## Repository Structure
+### For Backend Development
+1. **Repository Pattern**: Always use repository pattern for data access
+2. **Service Layer**: Business logic belongs in service layer
+3. **Validation**: Validate all inputs at controller level
+4. **Error Handling**: Use centralized error handler
+5. **Logging**: Include correlation IDs in all logs
+6. **Testing**: Write both unit and integration tests
 
-```
-agentic-coding/
-├── claudia/           # Primary development environment (Material-UI + Vite)
-├── codex/             # Codex testing environment (not used for current tasks)
-├── cursor/            # Cursor testing environment (not used for current tasks)
-└── start_template/    # Base template (not used for current tasks)
-```
+### For Frontend Development
+1. **Component Structure**: Keep components focused and reusable
+2. **API Integration**: Use service layer for all API calls
+3. **Error Handling**: Display user-friendly error messages
+4. **Loading States**: Always show loading indicators
+5. **Accessibility**: Follow WCAG guidelines
+6. **Responsive Design**: Mobile-first approach
 
-## Development Commands (Within claudia/)
+## Testing Strategy
 
-- `npm run dev` - Start development server (Vite)
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
+### Backend Testing
+- **Unit Tests**: Test individual functions and methods
+- **Integration Tests**: Test API endpoints end-to-end
+- **Database Tests**: Test repository layer with test database
+- **Coverage**: Aim for 80%+ code coverage
 
-## Architecture Patterns
+### Frontend Testing
+- **Component Tests**: Test React components in isolation
+- **Integration Tests**: Test component interactions
+- **API Tests**: Mock API calls and test error handling
 
-The claudia project uses:
-- **React 19.1.0** with functional components and modern hooks
-- **Vite** as build tool and dev server
-- **Material-UI** (@mui/material, @mui/icons-material) for UI components
-- **ESLint** for code quality
-- **Inline styles** used throughout (not CSS modules or styled-components)
-- **No external state management** - uses React state only
+## Security Considerations
 
-## Key Files Structure (claudia/)
+### Backend Security
+- **Input Validation**: Validate all inputs
+- **SQL Injection**: Use parameterized queries
+- **CORS**: Configure CORS properly
+- **Rate Limiting**: Implement rate limiting
 
-- `src/main.jsx` - React entry point
-- `src/app.jsx` - Root component
-- `src/timeboxTimer.jsx` - Core timer component for testing
-- `package.json` - Dependencies and scripts
-- `vite.config.js` - Vite configuration
-- `eslint.config.js` - ESLint rules
+### Frontend Security
+- **XSS Prevention**: Sanitize user inputs
+- **CSRF Protection**: Use CSRF tokens
+- **Secure Storage**: Secure token storage
+- **HTTPS**: Always use HTTPS in production
 
-## Test Tasks
-
-1. **Task 1**: Add Pause and Reset controls to TimeboxTimer
-2. **Task 2**: Play sound and show alert when time is up
-3. **Task 3**: Store timeboxes in localStorage with history display
-4. **Task 4**: Animate timer countdown circle with SVG/canvas
-5. **Task 5**: Add dark mode support with toggle
-
-## Styling Guidelines
-
-- **Primary approach**: Inline styles (existing pattern)
-- **Material-UI components**: Use for UI elements when possible
-- **Icons**: Must use Material-UI icons (@mui/icons-material)
-- **Responsive design**: Ensure components work on mobile and desktop
-
-## React Development Standards
-
-- Use functional components with hooks
-- Export default at the bottom of files
-- Use descriptive component names in PascalCase
-- Keep state as close to where it's used as possible
-- Use controlled components for form inputs
-- Include dependency arrays in useEffect
-- Use arrow functions for event handlers
-
-## Working with Worktrees
-
-To check current worktrees:
-```bash
-git worktree list
-```
-
-To remove a worktree when done:
-```bash
-git worktree remove /Users/clover/claudia-task-[1-5]
-```
+This document serves as a comprehensive guide for AI agents and developers working on this project.

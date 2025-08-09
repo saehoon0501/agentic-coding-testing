@@ -1,0 +1,35 @@
+.entity-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s;
+}
+
+.entity-card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.entity-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.entity-card__header h3 {
+  margin: 0;
+  color: #2c3e50;
+}
+
+.entity-card__description {
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.entity-card__meta {
+  color: #999;
+  font-size: 0.875rem;
+}

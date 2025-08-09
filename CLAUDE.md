@@ -1,99 +1,76 @@
-# CLAUDE.md
+# AI Collaboration Guidelines for CRUD Application Foundation
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Project Overview
+This project implements a full-stack CRUD application with proper infrastructure setup, following a layered architecture pattern. The system is designed to be scalable, maintainable, and suitable for collaborative development between human developers and AI agents.
 
-# Agentic Coding Tools Testing Repository
+## Architecture Principles
 
-This repository tests and compares various agentic coding tools and their rule/instruction formats. It contains multiple sub-projects for testing different AI coding assistants.
+### Backend Architecture
+- **Layered Architecture**: Controller → Service → Repository → Model
+- **Separation of Concerns**: Each layer has distinct responsibilities
+- **Error Handling**: Centralized error handling with correlation IDs
+- **Validation**: Input validation at the controller layer
+- **Logging**: Structured logging with Winston
 
-## Git Worktree Setup for Parallel Tasks
+### Frontend Architecture
+- **Component-Based**: React components organized by feature
+- **Service Layer**: Centralized API communication
+- **Error Handling**: Consistent error display and user feedback
+- **Responsive Design**: Mobile-first CSS approach
 
-This repository is configured for parallel development using git worktrees. Each task has its own worktree directory:
+## Development Standards
 
-- `/Users/clover/claudia-task-1` (branch: `claudia/task-1-pause-reset`) - Task 1: Add Pause and Reset controls
-- `/Users/clover/claudia-task-2` (branch: `claudia/task-2-sound-alert`) - Task 2: Play sound and show alert when time is up
-- `/Users/clover/claudia-task-3` (branch: `claudia/task-3-localstorage`) - Task 3: Store timeboxes in localStorage with history
-- `/Users/clover/claudia-task-4` (branch: `claudia/task-4-countdown-animation`) - Task 4: Animate timer countdown circle
-- `/Users/clover/claudia-task-5` (branch: `claudia/task-5-dark-mode`) - Task 5: Add dark mode support
+### Code Quality
+1. **All code must follow established patterns**
+2. **Testing Requirements**: Unit tests for all models and services
+3. **Documentation Standards**: JSDoc comments for all public methods
 
-**Primary working directory**: `claudia/` folder within each worktree
+### AI Agent Collaboration Rules
 
-To work on a specific task:
-```bash
-cd /Users/clover/claudia-task-[1-5]/claudia
-npm install
-npm run dev
+#### For Backend Development
+1. Follow the existing controller → service → repository pattern
+2. Add validation middleware for input validation
+3. Include comprehensive error handling
+4. Write integration tests
+
+#### For Frontend Development
+1. Follow the established component structure
+2. Use common components when possible
+3. Implement proper error states and loading states
+
+## File Organization
+```
+backend/src/
+├── controllers/     # HTTP request handlers
+├── services/        # Business logic
+├── repositories/    # Data access layer
+├── models/          # Data models
+├── middleware/      # Express middleware
+└── utils/           # Utility functions
+
+frontend/src/
+├── components/
+│   ├── common/      # Reusable components
+│   └── crud/        # Feature-specific components
+├── services/        # API integration
+└── styles/          # CSS files
 ```
 
-## Repository Structure
+## Key Patterns
 
-```
-agentic-coding/
-├── claudia/           # Primary development environment (Material-UI + Vite)
-├── codex/             # Codex testing environment (not used for current tasks)
-├── cursor/            # Cursor testing environment (not used for current tasks)
-└── start_template/    # Base template (not used for current tasks)
-```
+### Error Handling
+- Backend: Use try-catch with proper logging
+- Frontend: Use error state with user-friendly messages
 
-## Development Commands (Within claudia/)
+### Testing
+- Write integration tests for all API endpoints
+- Write component tests for critical user flows
+- Maintain minimum 80% code coverage
 
-- `npm run dev` - Start development server (Vite)
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-- `npm run preview` - Preview production build
+## Future Enhancements
+- User authentication and authorization
+- Real-time updates with WebSockets
+- Advanced search and filtering
+- Database migration from in-memory to persistent storage
 
-## Architecture Patterns
-
-The claudia project uses:
-- **React 19.1.0** with functional components and modern hooks
-- **Vite** as build tool and dev server
-- **Material-UI** (@mui/material, @mui/icons-material) for UI components
-- **ESLint** for code quality
-- **Inline styles** used throughout (not CSS modules or styled-components)
-- **No external state management** - uses React state only
-
-## Key Files Structure (claudia/)
-
-- `src/main.jsx` - React entry point
-- `src/app.jsx` - Root component
-- `src/timeboxTimer.jsx` - Core timer component for testing
-- `package.json` - Dependencies and scripts
-- `vite.config.js` - Vite configuration
-- `eslint.config.js` - ESLint rules
-
-## Test Tasks
-
-1. **Task 1**: Add Pause and Reset controls to TimeboxTimer
-2. **Task 2**: Play sound and show alert when time is up
-3. **Task 3**: Store timeboxes in localStorage with history display
-4. **Task 4**: Animate timer countdown circle with SVG/canvas
-5. **Task 5**: Add dark mode support with toggle
-
-## Styling Guidelines
-
-- **Primary approach**: Inline styles (existing pattern)
-- **Material-UI components**: Use for UI elements when possible
-- **Icons**: Must use Material-UI icons (@mui/icons-material)
-- **Responsive design**: Ensure components work on mobile and desktop
-
-## React Development Standards
-
-- Use functional components with hooks
-- Export default at the bottom of files
-- Use descriptive component names in PascalCase
-- Keep state as close to where it's used as possible
-- Use controlled components for form inputs
-- Include dependency arrays in useEffect
-- Use arrow functions for event handlers
-
-## Working with Worktrees
-
-To check current worktrees:
-```bash
-git worktree list
-```
-
-To remove a worktree when done:
-```bash
-git worktree remove /Users/clover/claudia-task-[1-5]
-```
+Remember: Consistency is key to maintainable code. Follow existing patterns in the codebase.

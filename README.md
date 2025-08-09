@@ -1,141 +1,73 @@
-# Agentic Coding Tools Testing Repository
+# CRUD Application Foundation
 
-## Overview
-
-This repository is designed for testing and comparing various agentic coding tools and their unique rule/instruction formats. The project serves as a practical testing ground to evaluate how different AI coding assistants handle project-specific guidelines and coding conventions.
-
-## Tested Tools
-
-### 1. **Codex**
-- **Directory**: `codex/`
-- **Rule Format**: Uses `AGENTS.md` files
-- **Scope**: Instructions apply to the entire directory tree rooted at the folder containing the AGENTS.md file
-- **Key Features**:
-  - Can be placed anywhere in the filesystem (/, ~, Git repos)
-  - Provides coding conventions, code organization info, and testing instructions
-  - Supports programmatic checks that must be validated after changes
-  - Nested AGENTS.md files take precedence over parent files
-  - Direct system/user instructions override AGENTS.md instructions
-
-### 2. **Claude (Claudia)**
-- **Directory**: `claudia/`
-- **Rule Format**: Uses `CLAUDE.md` files
-- **Scope**: Automatically pulled into context when starting conversations
-- **Key Features**:
-  - Can be placed in repo root, parent directories, child directories, or home folder (~/.claude/)
-  - Ideal for documenting common bash commands, core files, code style guidelines
-  - Supports both checked-in (CLAUDE.md) and local (CLAUDE.local.md) variants
-  - Automatically generates CLAUDE.md when using `/init` command
-  - Optimizes context gathering and token usage
-
-### 3. **Cursor**
-- **Directory**: `cursor/`
-- **Rule Format**: Uses `.cursor/rules` directory with `.mdc` files (MDC format)
-- **Scope**: Can be scoped using path patterns and applied based on relevance
-- **Key Features**:
-  - Version-controlled rule files in `.cursor/rules` directories
-  - Supports multiple rule types:
-    - **Always**: Always included in model context
-    - **Auto Attached**: Included when files matching glob patterns are referenced
-    - **Agent Requested**: AI decides whether to include (requires description)
-    - **Manual**: Only included when explicitly mentioned using @ruleName
-  - Nested rules automatically attach when files in their directory are referenced
-  - Supports metadata and content in MDC format
-
-## Test Scenario
-
-### 🛑 Task 1: Add Pause and Reset Controls
-
-"Add a Pause and Reset button to the <TimeboxTimer /> component. The Pause button should stop the countdown, and the Reset button should clear the timer and allow the user to enter a new task."
-
-### 🔔 Task 2: Play a Sound and Show an Alert When Time Is Up
-
-"When the countdown reaches zero, play a short chime sound (local file) and show a modal or toast that says 'Timebox complete!' using mui components."
-
-### 💾 Task 3: Store Timeboxes in LocalStorage
-
-"Save completed timeboxes (task name, duration, and completion timestamp) to localStorage. Also, display a history of the last 5 timeboxes below the timer."
-
-### 🎨 Task 4: Animate the Timer Countdown Circle
-
-"Add a circular progress bar around the timer that visually counts down using SVG or canvas. Animate the circle to decrease smoothly in sync with the timer."
-
-### 🌙 Task 5: Add Dark Mode Support
-
-"Enable dark mode using Tailwind's built-in dark mode class and update mui theme config to support both light and dark styles. Add a toggle button at the top of the page."
-
-
+This project implements a full-stack CRUD application with proper infrastructure setup, following the architectural plan for scalable development.
 
 ## Project Structure
 
-```
-agentic_coding_test/
-├── README.md                 # This overview document
-├── AGENTS.md                 # Project Rule for Codex
-├── .cursor/rules
-|    ├── AGENTS.md                 # Project Rule for Cursor
-├── .claude/
-|    ├── CLAUDE.md                 # Project Rule for Claude Code
-├── start_template/           # Base template for new tool tests
-│   ├── src/
-│   │   ├── app.jsx          # Main React application
-│   │   ├── main.jsx         # React entry point
-│   │   └── timeboxTimer.jsx # Sample component for testing
-│   ├── package.json         # Dependencies and scripts
-│   ├── vite.config.js       # Vite configuration
-│   └── eslint.config.js     # ESLint configuration
-├── codex/                   # Codex testing environment
-├── claudia/                 # Claude testing environment
-└── cursor/                  # Cursor testing environment
-```
+### Backend (/backend)
+- **src/controllers**: API endpoint controllers
+- **src/models**: Data models and entity definitions
+- **src/repositories**: Data access layer with repository pattern
+- **src/middleware**: Request/response middleware components
+- **src/services**: Business logic services
+- **src/config**: Application configuration
+- **src/migrations**: Database migration files
+- **src/utils**: Utility functions and helpers
+- **tests**: Unit and integration tests
 
-## Sample Application
-
-All environments contain a consistent React application featuring:
-- A timebox timer component for productivity tracking
-- Modern React patterns and hooks
-- Responsive design principles
-- ESLint configuration for code quality
+### Frontend (/frontend)
+- **src/components**: React components organized by feature
+- **src/services**: API integration and HTTP client
+- **src/utils**: Frontend utility functions
+- **src/styles**: CSS and styling files
+- **public**: Static assets
 
 ## Getting Started
 
-### Prerequisites
-- Node.js and npm installed
-- Git for version control
+### Backend Setup
+1. Navigate to backend directory: `cd backend`
+2. Install dependencies: `npm install`
+3. Set up environment variables: `cp .env.example .env`
+4. Run migrations: `npm run migrate`
+5. Start development server: `npm run dev`
 
-### Setup Instructions
+### Frontend Setup
+1. Navigate to frontend directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Start development server: `npm start`
 
-1. **Clone the repository**
-   ```bash
-   git clone [repository-url]
-   cd agentic_coding_test
-   ```
+## Development Guidelines
 
-2. **Choose a testing environment**
-   ```bash
-   cd [codex|claudia|cursor]
-   ```
+- Follow the established project structure
+- Write tests for all new features
+- Use the repository pattern for data access
+- Implement proper error handling and logging
+- Follow RESTful API conventions
 
-3. **Install dependencies**
-   ```bash
-   npm install
-   ```
+## API Endpoints
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
+### Health Check
+- GET /health - Application health status
 
-5. **Run linting**
-   ```bash
-   npm run lint
-   ```
+### Entities (Sample CRUD)
+- GET /api/entities - List all entities (paginated)
+- GET /api/entities/:id - Get single entity
+- POST /api/entities - Create new entity
+- PUT /api/entities/:id - Update entity (full)
+- PATCH /api/entities/:id - Update entity (partial)
+- DELETE /api/entities/:id - Delete entity
 
-## Testing Methodology
+## Architecture Decisions
 
-This repository enables systematic testing of:
-- **Rule adherence**: How well each tool follows project-specific guidelines
-- **Code quality**: Consistency in generated code across different tools
-- **Integration**: How tools work with existing project structures
-- **Performance**: Speed and efficiency of code generation and modification
-- **Context understanding**: How well tools understand and apply project context
+This project follows a layered architecture with:
+- Controller layer for HTTP handling
+- Service layer for business logic
+- Repository layer for data access
+- Model layer for data representation
+
+The frontend uses a component-based architecture with:
+- Reusable common components
+- Feature-specific CRUD components
+- Centralized API service layer
+- Proper error handling and loading states
+

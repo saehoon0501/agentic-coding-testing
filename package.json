@@ -1,0 +1,23 @@
+{
+  "name": "crud-application-foundation",
+  "version": "0.1.0",
+  "description": "Full-stack CRUD application with proper infrastructure setup",
+  "main": "backend/src/app.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "backend:dev": "cd backend && npm run dev",
+    "frontend:dev": "cd frontend && npm start",
+    "test": "npm run backend:test && npm run frontend:test",
+    "backend:test": "cd backend && npm test",
+    "frontend:test": "cd frontend && npm test",
+    "build": "npm run backend:build && npm run frontend:build",
+    "backend:build": "cd backend && npm run build",
+    "frontend:build": "cd frontend && npm run build"
+  },
+  "keywords": ["crud", "api", "fullstack", "nodejs", "react"],
+  "author": "Development Team",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

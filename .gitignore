@@ -102,4 +102,24 @@ Thumbs.db
 
 # Vite
 vite.config.js.timestamp-*
-vite.config.ts.timestamp-* 
+vite.config.ts.timestamp-*
+
+# Test coverage
+coverage/
+.nyc_output
+
+# Package manager lock files (if using different managers)
+yarn.lock
+pnpm-lock.yaml
+
+# Workspace related
+.pnpm-store/
+
+# IDE configurations
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+
+# Build artifacts specific to this project
+merge_log.txt
+*.log 

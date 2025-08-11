@@ -69,24 +69,38 @@ This repository is designed for testing and comparing various agentic coding too
 ## Project Structure
 
 ```
-agentic_coding_test/
+agentic-coding-tools-testing/
 ├── README.md                 # This overview document
-├── AGENTS.md                 # Project Rule for Codex
-├── .cursor/rules
-|    ├── AGENTS.md                 # Project Rule for Cursor
-├── .claude/
-|    ├── CLAUDE.md                 # Project Rule for Claude Code
-├── start_template/           # Base template for new tool tests
-│   ├── src/
-│   │   ├── app.jsx          # Main React application
-│   │   ├── main.jsx         # React entry point
+├── package.json              # Root workspace configuration and scripts
+├── .env.example             # Environment variables template
+├── .gitignore               # Git ignore patterns
+├── AGENTS.md                # Project rules for Codex
+├── CLAUDE.md                # Project rules for Claude Code
+│
+├── start_template/          # Base template for new tool tests
+│   ├── src/                # Source code directory
+│   │   ├── app.jsx         # Main React application
+│   │   ├── main.jsx        # React entry point
 │   │   └── timeboxTimer.jsx # Sample component for testing
-│   ├── package.json         # Dependencies and scripts
-│   ├── vite.config.js       # Vite configuration
-│   └── eslint.config.js     # ESLint configuration
-├── codex/                   # Codex testing environment
-├── claudia/                 # Claude testing environment
-└── cursor/                  # Cursor testing environment
+│   ├── package.json        # Dependencies and scripts
+│   ├── vite.config.js      # Vite configuration
+│   └── eslint.config.js    # ESLint configuration
+│
+├── codex/                  # Codex testing environment
+│   ├── src/                # Source code directory
+│   ├── rules/              # Codex-specific rule files
+│   ├── package.json        # Project dependencies
+│   └── [config files]      # Build and linting configuration
+│
+├── claudia/                # Claude testing environment  
+│   ├── src/                # Source code directory
+│   ├── package.json        # Project dependencies
+│   └── [config files]      # Build and linting configuration
+│
+└── cursor/                 # Cursor testing environment
+    ├── src/                # Source code directory
+    ├── package.json        # Project dependencies
+    └── [config files]      # Build and linting configuration
 ```
 
 ## Sample Application
@@ -100,36 +114,70 @@ All environments contain a consistent React application featuring:
 ## Getting Started
 
 ### Prerequisites
-- Node.js and npm installed
+- Node.js (v18.0.0 or higher)
+- npm (v8.0.0 or higher)
 - Git for version control
 
-### Setup Instructions
+### Quick Start
 
 1. **Clone the repository**
    ```bash
    git clone [repository-url]
-   cd agentic_coding_test
+   cd agentic-coding-tools-testing
    ```
 
-2. **Choose a testing environment**
+2. **Install all dependencies (recommended for testing)**
    ```bash
-   cd [codex|claudia|cursor]
+   npm run install:all
    ```
 
-3. **Install dependencies**
+3. **Set up environment variables**
    ```bash
-   npm install
+   cp .env.example .env
+   # Edit .env file with your specific configuration
    ```
 
-4. **Start development server**
-   ```bash
-   npm run dev
-   ```
+### Working with Individual Environments
 
-5. **Run linting**
-   ```bash
-   npm run lint
-   ```
+#### Option 1: Using Root-Level Scripts (Recommended)
+```bash
+# Start development server for specific environment
+npm run dev:claudia     # Claude testing environment
+npm run dev:codex       # Codex testing environment  
+npm run dev:cursor      # Cursor testing environment
+npm run dev:start-template  # Base template
+
+# Run linting for all environments
+npm run lint:all
+
+# Build all environments
+npm run build:all
+```
+
+#### Option 2: Working Directly in Sub-Projects
+```bash
+# Navigate to specific environment
+cd [claudia|codex|cursor|start_template]
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Run linting
+npm run lint
+
+# Build for production
+npm run build
+```
+
+### Development Workflow
+
+1. **Choose your testing environment** based on which AI coding assistant you want to test
+2. **Follow the specific rule format** for that environment (see sections above)
+3. **Implement the test tasks** using the AI assistant
+4. **Compare results** across different environments
 
 ## Testing Methodology
 

@@ -1,0 +1,58 @@
+{
+  "name": "agentic-coding-tools-testing",
+  "version": "1.0.0",
+  "description": "A testing repository for comparing various agentic coding tools and their rule/instruction formats",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm run install:claudia && npm run install:codex && npm run install:cursor && npm run install:start-template",
+    "install:claudia": "cd claudia && npm install",
+    "install:codex": "cd codex && npm install", 
+    "install:cursor": "cd cursor && npm install",
+    "install:start-template": "cd start_template && npm install",
+    "dev:claudia": "cd claudia && npm run dev",
+    "dev:codex": "cd codex && npm run dev",
+    "dev:cursor": "cd cursor && npm run dev", 
+    "dev:start-template": "cd start_template && npm run dev",
+    "build:all": "npm run build:claudia && npm run build:codex && npm run build:cursor && npm run build:start-template",
+    "build:claudia": "cd claudia && npm run build",
+    "build:codex": "cd codex && npm run build",
+    "build:cursor": "cd cursor && npm run build",
+    "build:start-template": "cd start_template && npm run build",
+    "lint:all": "npm run lint:claudia && npm run lint:codex && npm run lint:cursor && npm run lint:start-template",
+    "lint:claudia": "cd claudia && npm run lint",
+    "lint:codex": "cd codex && npm run lint", 
+    "lint:cursor": "cd cursor && npm run lint",
+    "lint:start-template": "cd start_template && npm run lint",
+    "test": "echo \"Tests are run within individual sub-projects. Use npm run test:<project>\" && exit 1",
+    "test:claudia": "cd claudia && npm test",
+    "test:codex": "cd codex && npm test",
+    "test:cursor": "cd cursor && npm test",
+    "test:start-template": "cd start_template && npm test"
+  },
+  "workspaces": [
+    "claudia",
+    "codex", 
+    "cursor",
+    "start_template"
+  ],
+  "keywords": [
+    "agentic-coding",
+    "ai-coding-assistant",
+    "testing",
+    "comparison",
+    "react",
+    "javascript",
+    "vite"
+  ],
+  "author": "Development Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/agentic-coding-tools-testing.git"
+  }
+}

@@ -122,4 +122,8 @@ pnpm-lock.yaml
 
 # Build artifacts specific to this project
 merge_log.txt
-*.log 
+*.log
+
+# Temporary files
+*_resolved.*
+*_temp.* 
